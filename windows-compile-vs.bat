@@ -21,6 +21,7 @@ set LEVELDB_MCPE_VER=10f59b56bec1db3ffe42ff265afe22182073e0e2
 set PHP_PTHREADS_VER=ba86cfbe4a6a658df8cf394a653e74fa643dadf1
 set PHP_YAML_VER=2.0.4
 set PHP_POCKETMINE_CHUNKUTILS_VER=master
+set PHP_EXT_CHUNKUTILS2_VER=master
 set PHP_IGBINARY_VER=3.1.2
 REM this is 1.2.9 but tags with a "v" prefix are a pain in the ass
 set PHP_DS_VER=2ddef84d3e9391c37599cb716592184315e23921
@@ -161,6 +162,7 @@ cd php-src\ext
 call :get-extension-zip-from-github "pthreads"              "%PHP_PTHREADS_VER%"              "pmmp"     "pthreads"                || exit 1
 call :get-extension-zip-from-github "yaml"                  "%PHP_YAML_VER%"                  "php"      "pecl-file_formats-yaml"  || exit 1
 call :get-extension-zip-from-github "pocketmine_chunkutils" "%PHP_POCKETMINE_CHUNKUTILS_VER%" "dktapps"  "PocketMine-C-ChunkUtils" || exit 1
+call :get-extension-zip-from-github "ext-chunkutils2" "%PHP_EXT_CHUNKUTILS2_VER%" "ptkdrake"  "ext-chunkutils2" || exit 1
 call :get-extension-zip-from-github "igbinary"              "%PHP_IGBINARY_VER%"              "igbinary" "igbinary"                || exit 1
 call :get-extension-zip-from-github "ds"                    "%PHP_DS_VER%"                    "php-ds"   "ext-ds"                  || exit 1
 call :get-extension-zip-from-github "leveldb"               "%PHP_LEVELDB_VER%"               "reeze"    "php-leveldb"             || exit 1
@@ -223,6 +225,7 @@ call configure^
  --with-openssl^
  --with-pcre-jit^
  --with-pthreads=shared^
+ --with-ext-chunkutils2=shared^
  --with-simplexml^
  --with-sodium^
  --with-sqlite3=shared^
@@ -265,6 +268,7 @@ call :pm-echo "Generating php.ini..."
 (echo extension=php_pthreads.dll)>>"%php_ini%"
 (echo extension=php_openssl.dll)>>"%php_ini%"
 (echo extension=php_pocketmine_chunkutils.dll)>>"%php_ini%"
+(echo extension=php_ext-chunkutils2.dll)>>"%php_ini%"
 (echo extension=php_igbinary.dll)>>"%php_ini%"
 (echo extension=php_ds.dll)>>"%php_ini%"
 (echo extension=php_leveldb.dll)>>"%php_ini%"
